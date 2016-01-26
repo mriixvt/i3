@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+#currenttime=$(date +%I:%M)
+
+wget -q --spider http://google.com
+
+if [ ! $? -eq 0 ]; then
+    echo -e 'No Connect'
+fi

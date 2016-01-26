@@ -1,0 +1,63 @@
+alignment bottom_middle
+background no
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont DejaVu Sans Mono:size=9
+gap_x -230
+gap_y -670
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+double_buffer yes
+
+format_human_readable yes
+
+# pad_percents 2
+top_cpu_separate true
+
+minimum_size 1366 200
+maximum_width 1366
+own_window no
+own_window_transparent yes
+own_window_type desktop # normal/override/desktop (just try them)
+own_window_class Conky
+# own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager # ,maximized_vert,maximized_horz
+
+
+text_buffer_size 4096
+
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale yes
+show_graph_range yes
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+top_name_width 15
+
+
+top_name_width 15
+
+lua_load ~/.conky/main.lua
+lua_startup_hook startup 60 /var/log/auth.log /var/log/kern.log /var/log/daemon.log /var/log/user.log /var/log/apt/term.log /var/log/dpkg.log
+
+TEXT ####################################################################
+#${if_up usb0} | ${color grey}usb0 (${addr usb0}):  $color ${upspeed usb0}${color grey}/$color${downspeed usb0} ${endif}
+#${color grey}$hr
+#${color grey}System Log (as of $time):
+#${color white}${tail /var/log/syslog 10 5}
+#${execpi 5 ~/.conky/revtail.pl 10 /var/log/syslog}
+${lua_parse printlog}

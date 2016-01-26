@@ -1,0 +1,2 @@
+#!/bin/bash
+wget --user-agent="Qutebrowser Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/533.4 (KHTML, like Gecko) Chrome/5.0.375.55 Safari/533.4" -q "https://www.facebook.com/feeds/notifications.php?id=100008623871738&viewer=100008623871738&key=AWi3jkZLqiNWOcvs&format=rss20" -O /tmp/fbrss

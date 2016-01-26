@@ -1,0 +1,36 @@
+alignment bottom_middle
+background no
+
+use_xft yes
+xftfont DejaVu Sans Mono:size=9
+
+gap_x -230
+gap_y -80
+
+minimum_size 1366 300
+maximum_width 1366
+
+own_window no
+own_window_type override # normal/override/desktop
+own_window_class Conky
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+use_spacer right
+update_interval 1.0
+
+double_buffer yes
+no_buffers yes 
+text_buffer_size 1024
+
+color1 66CD00
+color2 ff3232
+
+TEXT  
+${offset 110}${color grey}System Log: 
+
+${color grey}${tail /var/log/everything.log 12} 
+${if_mpd_playing}${voffset 10}${goto 0}${font Arial Black:size=7} ${if_mpd_playing} [${mpd_status} - ${mpd_elapsed}/${mpd_length}] ${color2}${mpd_smart}${color} ${else} ${endif} \
+${alignr}${offset -233}Down:${color2} ${downspeed enp1s0f2}${color}  Up:${color1} ${upspeed enp1s0f2}${color}     \
+RAM: ${memperc}% ${membar 5,50}  \
+${color1}${exec free -m | sed 1d | head -n1 | awk '{ print $3 }'}${color} ${font}

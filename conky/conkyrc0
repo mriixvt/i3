@@ -1,0 +1,82 @@
+
+  total_run_times 0                   
+  background yes                        
+
+
+  cpu_avg_samples 1                     
+  net_avg_samples 2                     
+
+
+  double_buffer yes                     
+  no_buffers yes                        
+  text_buffer_size 1024                 
+
+
+  out_to_console no                     
+  update_interval 1  
+
+  alignment top_right                
+
+  minimum_size 350 10             
+  maximum_width 350                
+
+  gap_x 30                        
+  gap_y 30                            
+
+  draw_shades no                       
+  draw_outline no                      
+  draw_borders no                      
+  border_width 1                       
+  border_inner_margin 1                
+
+  own_window yes                       
+  own_window_type override             
+  own_window_transparent yes           
+
+
+  use_xft yes                          
+  xftalpha .1                           
+  override_utf8_locale yes              
+  uppercase no                          
+  use_spacer right                      
+
+  xftfont saxMono:size=9               
+
+  default_bar_size 82 3                 
+  stippled_borders 3                    
+
+
+  default_color FFFFFF                  
+  default_shade_color 333333            
+  default_outline_color black                                  
+
+ 
+  short_units yes                       
+  pad_percents 2                       
+
+# Lua Script
+  lua_load $HOME/.i3/conky/clock.lua
+  lua_draw_hook_pre clock_rings
+
+color2 00aaff #99ff33
+color4 ff0000
+
+TEXT
+${color3}${offset 56}${voffset 3}${cpugraph cpu6 17,1}${voffset -1}${cpugraph cpu6 0,50}
+${voffset -27}${offset 110}${font Digital\-7:size=20}${time %H:%M:%S}${font}${alignr}${uptime}
+${voffset -5}${offset 110}${hr}${voffset 2}${color1}
+${font Nimbus Mono L:size=8}${execp cal | sed '1!d ; s/  //g ; s/^/\${goto 120} /g'}
+${execp cal | sed '1d ; s/^/ /g ; s/$/ /g ; s/'" $(date +%e)"'/\${color2}'" $(date +%e)"'\${color1}/1 ; s/^/\${goto 120}/g'} ${voffset -84} #
+${goto 270}\#1:${color2}${cpu cpu1}%${color1}${offset 11}\#2:${color2}${cpu cpu2}%${color1}
+${goto 270}\#R:${memperc}%${offset 11}\#S:${swapperc}% ${swapbar 3,40}
+
+${if_existing /proc/net/route wlp2s0}${goto 270}${offset 11} - WiFi -${else}${if_existing /proc/net/route enp1s0f2}${goto 270}${offset 11} - Link -${else}${goto 270}${offset 11} -  \#\#  -${endif}${endif}
+
+${goto 270}/s:${fs_used_perc /}%${alignr}${color2}${fs_free /}${color1}
+${goto 270}/w:${fs_used_perc /mnt/windows}%${alignr}${color2}${fs_free /mnt/windows}${color3}
+
+${offset 56}${stippled_hr}${voffset -26}
+${offset 56}${cpugraph cpu6 17,1}${color1}
+${offset 56}ToDo List :::..${voffset -3}
+${offset 56}${cpugraph cpu6 0,90}
+${execp sed '/^#/d ; s/^/\${offset 56} - /g ; s/ - $/ ------/g' $HOME/Documents/LAW/todo}

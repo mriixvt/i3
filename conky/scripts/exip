@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+
+#EX=$(wget http://checkip.dyndns.org/ -q -O - | grep -Eo '\<[[:digit:]]{1,3}(\.[[:digit:]]{1,3}){3}\>')
+EX=$(curl icanhazip.com)
+if curl icanhazip.com
+then
+echo "$EX"
+else
+echo "No Internet"
+fi

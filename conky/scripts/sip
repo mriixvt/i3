@@ -1,0 +1,39 @@
+#!/bin/bash
+#aaf
+
+dump=$(lynx --dump http://www.theastrologer.com/wap/todaysplanet.php | 
+	grep -Ea 'Sun|Moon|Mercury|Venus|Mars|Jupiter|Saturn|Uranus|Neptune|Pluto' | 
+	awk '{gsub(/\[|]|\;/,"")}1' | 
+	cut -c5-55 | 
+	awk '{gsub("0|1|2|3|4|5|6|7|8|9|", "");print}' | 
+	sed "s/[';]//g" | 
+	awk '{gsub(":"," >");print}' | 
+	awk '!($4="")' | 
+	# Planets
+	awk '{gsub("Sun",			"☉");print}' | 
+	awk '{gsub("Moon",			"☾");print}' | 
+	awk '{gsub("Mercury",		"☿");print}' | 
+	awk '{gsub("Venus",			"♀");print}' | 
+	awk '{gsub("Earth",			"♁");print}' | 
+	awk '{gsub("Mars",			"♂");print}' | 
+	awk '{gsub("Jupiter",		"♃");print}' | 
+	awk '{gsub("Saturn", 		"♄");print}' | 
+	awk '{gsub("Uranus", 		"♅");print}' | 
+	awk '{gsub("Neptune", 		"♆");print}' | 
+	awk '{gsub("Pluto", 		"♇");print}' | 
+	awk '{gsub("Ceres", 		"⚳");print}' | 
+	# Signs
+	awk '{gsub("Aries",			"♈");print}' | 
+	awk '{gsub("Taurus",		"♉");print}' | 
+	awk '{gsub("Gemini",		"♊");print}' | 
+	awk '{gsub("Cancer",		"♋");print}' | 
+	awk '{gsub("Leo",			"♌");print}' | 
+	awk '{gsub("Virgo",			"♍");print}' | 
+	awk '{gsub("Libra",			"♎");print}' | 
+	awk '{gsub("Scorpio",		"♏");print}' | 
+	awk '{gsub("Sagittarius",	"♐");print}' | 
+	awk '{gsub("Capricorn",		"♑");print}' | 
+	awk '{gsub("Aquarius",		"♒");print}' | 
+	awk '{gsub("Pisces",		"♓");print}')
+
+echo "$dump"

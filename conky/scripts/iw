@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+use Term::ANSIColor;
+use String::Diff qw( diff );
+
+my @strings = (
+  'This is string 1', 'This is string 2'
+  );
+
+  my $BOLD_RED_MARK = "\e[1;31m"; # or \e[0;31m, if bold is not required
+  my $RESET_MARK    = "\e[0m";
+
+  my $diff = String::Diff::diff(@strings,
+     remove_open  => $BOLD_RED_SIGN,
+	    remove_close => $RESET_SIGN,
+		   append_open  => $BOLD_RED_SIGN,
+		      append_close => $RESET_SIGN,
+			  );
+
+			  print $diff->[0], "\n";
+			  print $diff->[1], "\n";

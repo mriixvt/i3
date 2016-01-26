@@ -1,0 +1,24 @@
+#!/bin/bash
+numberoflines=5
+#address="https://www.facebook.com/feeds/notifications.php?id=100008623871738&viewer=100008623871738&key=AWi3jkZLqiNWOcvs&format=rss20"
+cat /tmp/fbrss | grep "<title>" | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' | awk '{
+ gsub(/\[|]|\/|\;/,"");
+ gsub("<|>|!", "");
+ gsub("CDATA", "");
+ gsub("title", "");
+ gsub(/&apos;s/, ""); 
+ gsub(/&quot;/, "\"");
+ gsub(/commented on/, ">");
+ gsub(/also/, "");
+ gsub(/your friend request/, "friendship");
+ gsub(/posted something on/, "-->");
+ gsub(/posted in/, "-->");
+ print }' | awk '{
+ if ($0 in stored_lines)
+    x=1
+ else
+    print 
+    stored_lines[$0]=1
+ }'| 
+ tail -n +2 | head -n $numberoflines
+
