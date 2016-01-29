@@ -17,19 +17,19 @@
 
   alignment top_left                   
 
-  minimum_size 2000
-  maximum_width 298
+  minimum_size 2000                  
+  maximum_width 350
 
-  gap_x 15
-  gap_y 30
-
+  gap_x 990
+  gap_y 290                            
+           
   draw_shades no                       
   draw_outline no                      
   draw_borders no                      
   border_width 1                       
-  border_inner_margin 1                
+  border_inner_margin 1     
 
-  own_window yes                       
+  own_window yes                      
   own_window_type override             
   own_window_transparent yes           
 
@@ -40,7 +40,7 @@
   uppercase no                          
   use_spacer right                      
 
-  xftfont Nimbus Mono L:size=8
+  xftfont Nimbus Mono L:size=8             
 
   default_bar_size 82 3                 
   stippled_borders 3                    
@@ -54,27 +54,12 @@
   short_units yes                       
   pad_percents 2     
 
-  color1 ff0000
-  color5 00cccc
+  color1 007fff
+  color2 ff3232
+
+
 
 TEXT
-${execp perl /home/aaf/.i3/conky/wifi/wifiscan.pl wlp2s0 | \
-    sed 's/\<ESSID\>//g' | \
-    sed 's/.*:"//g' | \
-    sed 's/\<Quality\>//g' | \
-    sed 's/\<level\>//g' | \
-    awk '{gsub("=-", "-");print}' | \
-    awk '{gsub("=", "");print}' | \
-    awk '{gsub("\"", "");print}' | \
-    sed '1d' | sed '2d' | sed '3d' | sed '4d' | sed '5d' | sed '6d' | \
-    awk '{gsub("key:", "");print}' | \
-    awk '{ a="${color 00aaff}"$1"${color}"; b=$3; c=$4; d=$6; e=$9; \
-    if (c>=60) c="${color 66CD00}"c"${color}"; \
-    else if (c>=40) c="${color ffb90f}"c"${color}"; \
-    else if (c>=20) c="${color 00cccc}"c"${color}"; \
-    else if (c>=1) c="${color 4B4B4B}"c"${color}"; \
-    print a, b, c, d, e; }' | \
-    sort -k 6 -n -r | \
-    awk '{gsub("on","${color ff3232}locked${color}"); print}' | \
-    awk '{gsub("off","${color 66CD00}unlocked${color}"); print}' \
-}
+${color 4B4B4B}${hr}${color}
+${if_empty ${execi 1 lsblk | grep "disk\|part" | sed 1',8d' | awk '{gsub("/run/media/aaf/","");print $1,$4,"->",$7}'}} No USB Mounted${else}\
+${color1}${execi 1 lsblk | grep "disk\|part" | sed 1',8d' | awk '{gsub("/run/media/aaf/","");print $1,$4,"->",$7}'}${color}${endif}

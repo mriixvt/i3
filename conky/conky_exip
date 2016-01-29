@@ -17,10 +17,10 @@
 
   alignment top_left                   
 
-  minimum_size 100 5                  
-  maximum_width 120
+  minimum_size 2000                  
+  maximum_width 400
 
-  gap_x 1050                              
+  gap_x 850
   gap_y 540                            
            
   draw_shades no                       
@@ -60,4 +60,4 @@
 
 
 TEXT
-${if_empty ${execi 3 lynx -dump "https://duckduckgo.com/?q=my+ip+" | grep -a 'Your IP address is' | sed 's/\<Your IP address is\>//g' | sed 's/\<in\>//g' | awk '{gsub("    ", "");print}' | sed 's/\<Georgia\>//g'}}${color2} No Connect ${color}${else} ${color1}${execi 10 lynx -dump "https://duckduckgo.com/?q=my+ip+" | grep -a 'Your IP address is' | sed 's/\<Your IP address is\>//g' | sed 's/\<in\>//g' | awk '{gsub("    ", "");print}' | sed 's/\<Georgia\>//g'}${color} ${endif}
+${color1}${addr enp1s0f2}  ${gw_ip} ${color}${if_empty ${execi 1 lynx -dump "https://duckduckgo.com/?q=my+ip+" | grep -a 'Your IP address is' | sed 's/\<Your IP address is\>//g' | sed 's/\<in\>//g' | awk '{gsub("    ", "");print}' | sed 's/\<Georgia\>//g'}}${color2} No Connect ${color}${else} ${color1}${execi 10 lynx -dump "https://duckduckgo.com/?q=my+ip+" | grep -a 'Your IP address is' | sed 's/\<Your IP address is\>//g' | sed 's/\<in\>//g' | awk '{gsub("    ", "");print}' | sed 's/\<Georgia\>//g' | awk '{gsub("[3]","");print}'}${color} ${endif}

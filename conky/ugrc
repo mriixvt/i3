@@ -14,10 +14,10 @@
   alignment top_left                   
 
   minimum_size 2000
-  maximum_width 500
+  maximum_width 100
 
-  gap_x 990
-  gap_y 250                                
+  gap_x 225
+  gap_y 535  
 
   own_window yes                      
   own_window_type override           
@@ -29,7 +29,7 @@
   uppercase no                          
   use_spacer right                      
 
-  xftfont saxMono:size=10
+  xftfont Nimbus Mono L:size=9
 
   default_bar_size 82 3                 
   stippled_borders 3                    
@@ -46,5 +46,4 @@
 
 
 TEXT
-${color white}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '1p'}] ${color ff3232}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '5p'}]  ${color 66CD00}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '3p'}] ${color grey}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '7p'}] ${color 007fff}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '9p'}]
-${color ff3232}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '2p'}] ${color white}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '4p'}]  ${color yellow}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '6p'}] ${color 007fff}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '8p'}] ${color brown}[${execi 3000 sh ~/.i3/conky/scripts/sip | sed -n '10p'}]
+${execi 6 sh ~/.i3/conky/scripts/ug/script.sh}

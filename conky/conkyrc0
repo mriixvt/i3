@@ -17,7 +17,7 @@
 
   alignment top_right                
 
-  minimum_size 350 10             
+  minimum_size 2000
   maximum_width 350                
 
   gap_x 30                        
@@ -62,12 +62,14 @@ color2 00aaff #99ff33
 color4 ff0000
 
 TEXT
-${color3}${offset 56}${voffset 3}${cpugraph cpu6 17,1}${voffset -1}${cpugraph cpu6 0,50}
+${image $HOME/4_Moon/0.png -p 12,32 -s 90x90}${execi 10800 sh /home/aaf/4_Moon/moon_MoonGiant}
+#${color3}${offset 56}${voffset 3}${cpugraph cpu6 17,1}${voffset -1}${cpugraph cpu6 0,50}
+
 ${voffset -27}${offset 110}${font Digital\-7:size=20}${time %H:%M:%S}${font}${alignr}${uptime}
 ${voffset -5}${offset 110}${hr}${voffset 2}${color1}
 ${font Nimbus Mono L:size=8}${execp cal | sed '1!d ; s/  //g ; s/^/\${goto 120} /g'}
 ${execp cal | sed '1d ; s/^/ /g ; s/$/ /g ; s/'" $(date +%e)"'/\${color2}'" $(date +%e)"'\${color1}/1 ; s/^/\${goto 120}/g'} ${voffset -84} #
-${goto 270}\#1:${color2}${cpu cpu1}%${color1}${offset 11}\#2:${color2}${cpu cpu2}%${color1}
+${voffset -10}${goto 270}\#1:${color2}${cpu cpu1}%${color1}${offset 11}\#2:${color2}${cpu cpu2}%${color1}
 ${goto 270}\#R:${memperc}%${offset 11}\#S:${swapperc}% ${swapbar 3,40}
 
 ${if_existing /proc/net/route wlp2s0}${goto 270}${offset 11} - WiFi -${else}${if_existing /proc/net/route enp1s0f2}${goto 270}${offset 11} - Link -${else}${goto 270}${offset 11} -  \#\#  -${endif}${endif}
@@ -75,8 +77,10 @@ ${if_existing /proc/net/route wlp2s0}${goto 270}${offset 11} - WiFi -${else}${if
 ${goto 270}/s:${fs_used_perc /}%${alignr}${color2}${fs_free /}${color1}
 ${goto 270}/w:${fs_used_perc /mnt/windows}%${alignr}${color2}${fs_free /mnt/windows}${color3}
 
-${offset 56}${stippled_hr}${voffset -26}
-${offset 56}${cpugraph cpu6 17,1}${color1}
-${offset 56}ToDo List :::..${voffset -3}
-${offset 56}${cpugraph cpu6 0,90}
-${execp sed '/^#/d ; s/^/\${offset 56} - /g ; s/ - $/ ------/g' $HOME/Documents/LAW/todo}
+${voffset -25}${goto 35}Day: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "day old moon" | awk '{gsub("The|new moon|waning gibbous|waxing|crescent|first quarter|full moon|third quarter|last quarter|,|waning crescent|day old moon","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' | cut -c1-4 }${color}
+${voffset 5}${goto 5}F: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '2d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
+${voffset -15}${goto 131}N: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '1d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
+#${offset 56}${stippled_hr}${voffset -26}
+#${offset 56}${cpugraph cpu6 17,1}${color1}
+#${offset 56}ToDo List :::..${voffset -3}
+#${offset 56}${cpugraph cpu6 0,90}
