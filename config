@@ -262,7 +262,7 @@ bindsym Mod1+shift+o exec --no-startup-id thunar
 bindsym Mod1+shift+s exec --no-startup-id subl
 bindsym Mod1+shift+y exec --no-startup-id messengerfordesktop
 #bindsym Mod1+shift+p exec --no-startup-id urxvt -name games-launcher -e /home/luca/Documenti/games.sh
-bindsym Mod1+Print exec --no-startup-id scrot 'scrot-%Y-%m-%d-%T.png' -e 'mv $f ~/Pictures/Screen'
+bindsym Mod1+p exec --no-startup-id scrot 'scrot-%Y-%m-%d-%T.png' -e 'mv $f ~/Pictures/Screen'
 
 
 
@@ -310,7 +310,6 @@ exec --no-startup-id sh ~/.covers/mpc.sh
 exec --no-startup-id conky -c ~/.i3/conky/conkyrc1
 exec --no-startup-id urxvt -name ncmpcpp -e ncmpcpp -s playlist
 exec --no-startup-id conky -c ~/.i3/conky/conkyrc2
-exec --no-startup-id conky -c ~/4_Moon/.conkyrc_4_Moon_S11_V1
 exec --no-startup-id conky -c ~/.i3/conky/siprc
 exec --no-startup-id conky -c ~/.i3/conky/wifi/conkywi1
 exec --no-startup-id conky -c ~/.i3/conky/conky_exip
