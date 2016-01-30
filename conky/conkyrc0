@@ -80,7 +80,3 @@ ${goto 270}/w:${fs_used_perc /mnt/windows}%${alignr}${color2}${fs_free /mnt/wind
 ${voffset -25}${goto 35}Day: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "day old moon" | awk '{gsub("The|new moon|waning gibbous|waxing|crescent|first quarter|full moon|third quarter|last quarter|,|waning crescent|day old moon","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' | cut -c1-4 }${color}
 ${voffset 5}${goto 5}Full Moon: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '2d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
 ${voffset -15}${goto 195}New Moon: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '1d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
-#${offset 56}${stippled_hr}${voffset -26}
-#${offset 56}${cpugraph cpu6 17,1}${color1}
-#${offset 56}ToDo List :::..${voffset -3}
-#${offset 56}${cpugraph cpu6 0,90}
