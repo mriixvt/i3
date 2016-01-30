@@ -62,7 +62,7 @@ color2 00aaff #99ff33
 color4 ff0000
 
 TEXT
-${image $HOME/4_Moon/0.png -p 12,32 -s 90x90}${execi 10800 sh /home/aaf/4_Moon/moon_MoonGiant}
+${image $HOME/4_Moon/0.png -p 12,32 -s 90x90}
 #${color3}${offset 56}${voffset 3}${cpugraph cpu6 17,1}${voffset -1}${cpugraph cpu6 0,50}
 
 ${voffset -27}${offset 110}${font Digital\-7:size=20}${time %H:%M:%S}${font}${alignr}${uptime}
@@ -78,8 +78,8 @@ ${goto 270}/s:${fs_used_perc /}%${alignr}${color2}${fs_free /}${color1}
 ${goto 270}/w:${fs_used_perc /mnt/windows}%${alignr}${color2}${fs_free /mnt/windows}${color3}
 
 ${voffset -25}${goto 35}Day: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "day old moon" | awk '{gsub("The|new moon|waning gibbous|waxing|crescent|first quarter|full moon|third quarter|last quarter|,|waning crescent|day old moon","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' | cut -c1-4 }${color}
-${voffset 5}${goto 5}F: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '2d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
-${voffset -15}${goto 131}N: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '1d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
+${voffset 5}${goto 5}Full Moon: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '2d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
+${voffset -15}${goto 195}New Moon: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '1d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
 #${offset 56}${stippled_hr}${voffset -26}
 #${offset 56}${cpugraph cpu6 17,1}${color1}
 #${offset 56}ToDo List :::..${voffset -3}
