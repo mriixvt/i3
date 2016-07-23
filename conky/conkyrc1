@@ -17,11 +17,11 @@
 
   alignment bottom_left                   
 
-  minimum_size 155 155                  
-  maximum_width 155                     
+  minimum_size 210 210                  
+  maximum_width 210                     
 
-  gap_x 30                              
-  gap_y 30                             
+  gap_x 9                              
+  gap_y 32                             
 
   draw_shades no                       
   draw_outline no                      
@@ -56,4 +56,4 @@
 
 
 TEXT
-${image /home/aaf/.covers/cover.jpg -p 0,0 -s 150x150 -n}
+${image /home/aaf/.covers/cover.jpg -p 0,0 -s 210x210 -n}

@@ -40,7 +40,7 @@
   uppercase no                          
   use_spacer right                      
 
-  xftfont Nimbus Mono L:size=8
+  xftfont Nimbus Mono:style=Regular:size=9
 
   default_bar_size 82 3                 
   stippled_borders 3                    

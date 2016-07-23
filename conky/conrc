@@ -9,27 +9,27 @@
   text_buffer_size 1024                 
 
   out_to_console no                     
-  update_interval 10                     
+  update_interval 1                     
 
   alignment top_left                   
 
   minimum_size 80 10
-  maximum_width 300
+  maximum_width 600
 
-  gap_x 570                             
-  gap_y 100
+  gap_x 360                             
+  gap_y 30
 
   own_window yes                      
   own_window_type override           
   own_window_transparent yes           
-
-  use_xft yes                          
+                         
   xftalpha .1                           
   override_utf8_locale yes              
   uppercase no                          
   use_spacer right                      
 
-  xftfont saxMono:size=30          
+  use_xft yes
+  xftfont Nimbus Mono:style=Regular:size=9        
 
   default_bar_size 82 3                 
   stippled_borders 3                    
@@ -46,4 +46,19 @@
 
 
 TEXT
-${color2}${execi 3 sh ~/.i3/conky/scripts/con}${color}
+${color2}WGET${color} - Download Processes: ${execi 1 ps -e -o fname,pid | grep wget | awk '{print $1,"-",$2}'}
+${color2}${tail /mnt/part/Games/wget-log 8} 
+
+${color 90DDC0}Inbound: ${color gray}${tcp_portmon 1 32767 count}${alignc -36}${color 90DDC0}Outbound: ${color gray}${tcp_portmon 32768 61000 count}${alignr}${color 90DDC0}Total: ${color gray}${tcp_portmon 1 65535 count}
+${color 90DDC0}Inbound Connection ${alignr} Local Service/Port${color gray}
+ ${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lservice 0}
+ ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
+ ${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lservice 2}
+ ${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lservice 3}
+${color 90DDC0}Outbound Connection ${alignr} Remote Service/Port${color gray}
+ ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
+ ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
+ ${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rservice 2}
+ ${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rservice 3}
+ ${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rservice 4}
+ ${tcp_portmon 32768 61000 rhost 5} ${alignr} ${tcp_portmon 32768 61000 rservice 5}

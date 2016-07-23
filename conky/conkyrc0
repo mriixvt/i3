@@ -40,7 +40,7 @@
   uppercase no                          
   use_spacer right                      
 
-  xftfont saxMono:size=9               
+  xftfont Nimbus Mono:style=Regular:size=9
 
   default_bar_size 82 3                 
   stippled_borders 3                    
@@ -54,29 +54,32 @@
   short_units yes                       
   pad_percents 2                       
 
-# Lua Script
-  lua_load $HOME/.i3/conky/clock.lua
-  lua_draw_hook_pre clock_rings
-
+color0 ff3232
 color2 00aaff #99ff33
 color4 ff0000
 
 TEXT
-${image $HOME/4_Moon/0.png -p 12,32 -s 90x90}
-#${color3}${offset 56}${voffset 3}${cpugraph cpu6 17,1}${voffset -1}${cpugraph cpu6 0,50}
+#${voffset -27}${offset 110}${font Digital\-7:size=20}${time %H:%M:%S}${font}
 
-${voffset -27}${offset 110}${font Digital\-7:size=20}${time %H:%M:%S}${font}${alignr}${uptime}
-${voffset -5}${offset 110}${hr}${voffset 2}${color1}
-${font Nimbus Mono L:size=8}${execp cal | sed '1!d ; s/  //g ; s/^/\${goto 120} /g'}
-${execp cal | sed '1d ; s/^/ /g ; s/$/ /g ; s/'" $(date +%e)"'/\${color2}'" $(date +%e)"'\${color1}/1 ; s/^/\${goto 120}/g'} ${voffset -84} #
-${voffset -10}${goto 270}\#1:${color2}${cpu cpu1}%${color1}${offset 11}\#2:${color2}${cpu cpu2}%${color1}
-${goto 270}\#R:${memperc}%${offset 11}\#S:${swapperc}% ${swapbar 3,40}
 
-${if_existing /proc/net/route wlp2s0}${goto 270}${offset 11} - WiFi -${else}${if_existing /proc/net/route enp1s0f2}${goto 270}${offset 11} - Link -${else}${goto 270}${offset 11} -  \#\#  -${endif}${endif}
+${voffset -27}${offset -2}${color ff3232}$nodename - $kernel - $machine${alignr}${color grey}${uptime}
+${voffset 5}${goto 0}${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "day old moon" | awk '{gsub("The|new moon|waning gibbous|waxing|crescent|first quarter|full moon|third quarter|last quarter|,|waning crescent|day old moon","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' | cut -c1-4 }${color} | \
+F: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '2d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
+${voffset -16}${goto 205}N: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '1d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
 
-${goto 270}/s:${fs_used_perc /}%${alignr}${color2}${fs_free /}${color1}
-${goto 270}/w:${fs_used_perc /mnt/windows}%${alignr}${color2}${fs_free /mnt/windows}${color3}
+${color1}${font Nimbus Mono:style=Regular:size=8}${execp cal | sed '1!d ; s/  //g ; s/^/\${goto 225} /g'}
+${execp cal | sed '1d ; s/^/ /g ; s/$/ /g ; s/'" $(date +%e)"'/\${color2}'" $(date +%e)"'\${color1}/1 ; s/^/\${goto 225}/g'} ${voffset -87} #
 
-${voffset -25}${goto 35}Day: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "day old moon" | awk '{gsub("The|new moon|waning gibbous|waxing|crescent|first quarter|full moon|third quarter|last quarter|,|waning crescent|day old moon","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' | cut -c1-4 }${color}
-${voffset 5}${goto 5}Full Moon: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '2d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
-${voffset -15}${goto 195}New Moon: ${color2}${execi 300 lynx -dump http://www.die.net/moon/ | grep "Next:" | sed '1d' | awk '{gsub("Next:","");print}' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//'}${color}
+
+${voffset -60}
+${color #F80043}Load:       ${color }$loadavg
+${color #F80043}Processes:  ${color }$processes  
+${color #F80043}Running:    ${color }$running_processes
+
+
+
+
+
+
+
+
